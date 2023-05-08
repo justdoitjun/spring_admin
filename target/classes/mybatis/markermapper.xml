@@ -21,5 +21,15 @@
     <delete id="delete" parameterType="Integer">
         DELETE FROM marker WHERE id=#{id}
     </delete>
-
+    <select id="search" parameterType="MarkerSearch" resultType="marker">
+        SELECT * FROM marker
+        <where>
+            <if test="loc != null and !loc.equals('')">
+                loc = UPPER(#{loc})
+            </if>
+            <if test="title != null and !title.equals('')">
+                AND title like '%'||#{title}||'%'
+            </if>
+        </where>
+    </select>
 </mapper>

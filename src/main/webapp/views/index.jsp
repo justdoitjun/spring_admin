@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Administartion Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,6 +31,11 @@
     <script src="/js/charts.js"></script>
     <%--jquery--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=52e8d1c57e9ed8ce16fa4bd903d1fb55"></script>
+    <%--Web Socket을 쓰겠습니다.--%>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -99,6 +104,23 @@
             </div>
         </li>
 
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+               aria-expanded="true" aria-controls="marker_mgt">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Marker</span>
+            </a>
+            <div id="marker_mgt" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Marker Managements : </h6>
+                    <a class="collapse-item" href="/marker/add">ADD</a>
+                    <a class="collapse-item" href="/marker/all">ALL</a>
+                </div>
+            </div>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -141,13 +163,20 @@
                 <i class="fas fa-fw fa-table"></i>
                 <span>Tables</span></a>
         </li>
-
-        <!-- Nav Item - Live Chart -->
         <li class="nav-item">
             <a class="nav-link" href="/livechart">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Live Chart</span></a>
+
         </li>
+        <!-- Nav Item - Live Chart -->
+<%--        <c: if test="${loginadm != null} ">--%>
+<%--            <li class="nav-item">--%>
+<%--                <a class="nav-link" href="/websocket">--%>
+<%--                    <i class="fas fa-fw fa-chart-area"></i>--%>
+<%--                    <span>Web Socket 웹소켓에 대해 알아보자</span></a>--%>
+<%--            </li>--%>
+<%--        </c:>--%>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
@@ -165,8 +194,8 @@
         </div>
 
     </ul>
-    <!-- End of Sidebar -->
-
+    <!-- End of Sidebar  (왼쪽 ) -->
+    <!--- 본론 --->
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
